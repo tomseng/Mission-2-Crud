@@ -1,13 +1,26 @@
 package network;
 
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+
+
 public class Crud {
 
+	
 	private String ipRegistre;
-	private String ipServeurBDD;
-	private String login;
-	private String password;
+	private String ipServeurBDD = "jdbc:mysql://localhost/formaton";
+	private String login = "root";
+	private String password = "";
 	private String nomDB;
 	private String tableEnregistrements;
+	
+	Connection cn;
+	java.sql.Statement st;
+	ResultSet rs;
+	
+	//Class.forName("com.mysql.jdbc.Driver");
+	
 
 	public String getIpRegistre() {
 		return ipRegistre;
@@ -65,7 +78,7 @@ public class Crud {
 		this.login = login;
 		this.password = password;
 		this.nomDB = nomDB;
-		this.tableEnregistrements = tableEnregistrements;
+		this.tableEnregistrements = tableEnregistrements; 
 	}
 
 }
