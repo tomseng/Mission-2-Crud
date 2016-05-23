@@ -1,6 +1,8 @@
 package network;
 
+import java.awt.EventQueue;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 
 
@@ -8,9 +10,9 @@ public class Crud {
 
 	
 	private String ipRegistre;
-	private String ipServeurBDD = "jdbc:mysql://localhost/formaton";
-	private String login = "root";
-	private String password = "";
+	private static String ipServeurBDD = "jdbc:mysql://172.20.10.3/mission2registry";
+	private static String login = "root";
+	private static String password = "";
 	private String nomDB;
 	private String tableEnregistrements;
 	public Connection cn;
@@ -18,7 +20,23 @@ public class Crud {
 	ResultSet rs;
 	
 	//Class.forName("com.mysql.jdbc.Driver");
-	
+	// La méthode qui appelera votre fonction Run
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                // L'essaie de connexion à votre base de donées
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection conn = DriverManager.getConnection(ipServeurBDD, login, password);
+                    System.out.println("Connecté");
+                } catch (Exception e){
+                    e.printStackTrace();
+                    System.out.println("Erreur");
+                    System.exit(0);
+                }
+            }
+        });
+    }
 
 	public String getIpRegistre() {
 		return ipRegistre;

@@ -38,14 +38,13 @@ public class Registry {
 				
 		//TestApp();
 		try {
-			
 		
 			socketserver = new ServerSocket(4485);
-			System.out.println("Le registre �coute les connexions sur le port "  + socketserver.getLocalPort()+"...");
+			System.out.println("Le registre écoute les connexions sur le port "  + socketserver.getLocalPort()+"...");
 
 			socketduserveur = socketserver.accept(); 
 
-			System.out.println("connexion d'un client !");
+			System.out.println("Un client s'est connecté !");
 		        socketserver.close();
 		        socketduserveur.close();
 
