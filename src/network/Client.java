@@ -13,7 +13,7 @@ public class Client {
 
 		try {
 		
-		     socket = new Socket(InetAddress.getLocalHost(),2016);	
+		     socket = new Socket(InetAddress.getLocalHost(),4485);	
 	             socket.close();
 
 		}catch (UnknownHostException e) {

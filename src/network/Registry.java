@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Serveur {
+public class Registry {
 	//List<String> listeEnregistrements = new ArrayList<>();
     private static HashMap<String, String[]> enregistrements;
 
@@ -35,15 +35,16 @@ public class Serveur {
 		
 		ServerSocket socketserver  ;
 		Socket socketduserveur ;
-		
-	
-		
-		TestApp();
+				
+		//TestApp();
 		try {
 			
 		
-			socketserver = new ServerSocket(2016);
+			socketserver = new ServerSocket(4485);
+			System.out.println("Le registre écoute les connexions sur le port "  + socketserver.getLocalPort()+"...");
+
 			socketduserveur = socketserver.accept(); 
+
 			System.out.println("connexion d'un client !");
 		        socketserver.close();
 		        socketduserveur.close();

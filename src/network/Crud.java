@@ -1,6 +1,5 @@
 package network;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
@@ -14,8 +13,7 @@ public class Crud {
 	private String password = "";
 	private String nomDB;
 	private String tableEnregistrements;
-	
-	Connection cn;
+	public Connection cn;
 	java.sql.Statement st;
 	ResultSet rs;
 	
