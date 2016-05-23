@@ -15,7 +15,7 @@ public class Test {
 			System.out.println("L'adresse locale est : "+localAdress ); 
 			
 			serverAdress= InetAddress.getByName("www.thomasengels.wordpress.com");
-                        System.out.println("L'adresse du serveur du site du zéro est : "+serverAdress);
+                        System.out.println("L'adresse du serveur est: "+serverAdress);
 		
 		} catch (UnknownHostException e) {
 			

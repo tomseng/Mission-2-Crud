@@ -28,7 +28,11 @@ public class Container {
 		this.nomWS = nomWS;
 	}
 	public static void main(String[] args) {
+<<<<<<< HEAD
 		
+=======
+		// TODO Auto-generated method stub
+>>>>>>> origin/master
 		
 	}
 
