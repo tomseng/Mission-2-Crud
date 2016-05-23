@@ -12,8 +12,9 @@ public class Client {
 		Socket socket;
 
 		try {
-		
-		     socket = new Socket(InetAddress.getLocalHost(),4485);	
+		     //socket = new Socket(InetAddress.getLocalHost(),4485);	
+		     socket = new Socket("172.20.10.13",4485);	
+
 	             socket.close();
 
 		}catch (UnknownHostException e) {
