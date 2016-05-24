@@ -35,47 +35,47 @@
 		}
 	</style>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	</head>
-	<script type="text/javascript">function addRow(section, initRow) {
-	    var newRow = initRow.clone().removeAttr('id').addClass('new').insertBefore(initRow),
-	        deleteRow = $('<a class="rowDelete"><img src="http://i.imgur.com/ZSoHl.png"></a>');
-	   
-		    newRow
-		        .append(deleteRow)
-		        .on('click', 'a.rowDelete', function() {
-		            removeRow(newRow);
-		        })
-		        .slideDown(300, function() {
-		            $(this)
-		                .find('input').focus();
-		        })
-		}
-		        
-		function removeRow(newRow) {
-		    newRow
-		        .slideUp(200, function() {
-		            $(this)
-		                .next('div:not(#initRow)')
-		                    .find('input').focus()
-		                    .end()
-		                .end()
-		                .remove();
-		        });
-		}
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		function addRow(section, initRow) {
+		    var newRow = initRow.clone().removeAttr('id').addClass('new').insertBefore(initRow),
+		        deleteRow = $('<a class="rowDelete"><img src="http://i.imgur.com/ZSoHl.png"></a>');
+		   
+			    newRow
+			        .append(deleteRow)
+			        .on('click', 'a.rowDelete', function() {
+			            removeRow(newRow);
+			        })
+			        .slideDown(300, function() {
+			            $(this)
+			                .find('input').focus();
+			        })
+			}
+			        
+			function removeRow(newRow) {
+			    newRow
+			        .slideUp(200, function() {
+			            $(this)
+			                .next('div:not(#initRow)')
+			                    .find('input').focus()
+			                    .end()
+			                .end()
+			                .remove();
+			        });
+			}
 
-		$(function () {
-		    var initRow = $('#initRow'),
-		        section = initRow.parent('section');
-		    
-		    initRow.on('focus', 'input', function() {
-		        addRow(section, initRow);
-		    });
+			$(function () {
+			    var initRow = $('#initRow'),
+			        section = initRow.parent('section');
+			    
+			    initRow.on('focus', 'input', function() {
+			        addRow(section, initRow);
+			    });
 		});
 
 	</script>
+</head>
 <body>
-
-
 	<form class="form-horizontal">
 	<fieldset>
 
@@ -99,7 +99,7 @@
 			<span class="help-block">Entrer l'IP du WebService</span>
 		  	<section>
 			    <div id="initRow">
-			    	<input name="multifield" placeholder="Value">
+			        <input name="multifield" placeholder="Value">
 			    </div>
 			</section>
 		</div>
