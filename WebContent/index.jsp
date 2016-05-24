@@ -9,7 +9,6 @@
 <body>
 <form method="post" action="traitement.php">
    <p>
-<<<<<<< HEAD
        <label for="Nom">Créer webservice</label>
        <input type="text" name="pseudo" id="pseudo" />
        
@@ -24,11 +23,7 @@
    	<p>
    		<label for="Champs">Champs:</label>
    		<input type="textarea" name="champs" id="champs" />
-   	</p>
->>>>>>> origin/master
-
-       
-   </p>
+   	</p></p>
 </form>
 </body>
 </html>
