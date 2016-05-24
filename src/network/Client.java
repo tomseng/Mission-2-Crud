@@ -14,7 +14,7 @@ public class Client {
 
 		try {
 		     //socket = new Socket(InetAddress.getLocalHost(),4485);	
-		     socket = new Socket("172.20.10.13",4485);	
+		     socket = new Socket("192.168.3.71",4485);	
 
 	             socket.close();
 
