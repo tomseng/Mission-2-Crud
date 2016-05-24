@@ -9,17 +9,26 @@ import java.util.List;
 
 public class Registry {
 	//List<String> listeEnregistrements = new ArrayList<>();
-    private static HashMap<String, String[]> enregistrements;
-
-    public static String TestApp() {
-        HashMap<String, String[]> enregistrements = new HashMap<String, String[]>();
-        //faire une hashmap
-		return null;
-        
-    } 
+    private HashMap<String, String[]> enregistrements;
+    
+    
 	 
 	public HashMap<String, String[]> getEnregistrements() {
 		return enregistrements;
+	}
+	public void addTable(String nomTable, String[] Ipport){
+		enregistrements.put(nomTable, Ipport);
+	}
+
+	public Registry() {
+		super();
+		enregistrements=new HashMap<String, String[]>();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Registry(HashMap<String, String[]> enregistrements) {
+		super();
+		this.enregistrements = enregistrements;
 	}
 
 	public void setEnregistrements(HashMap<String, String[]> enregistrements) {

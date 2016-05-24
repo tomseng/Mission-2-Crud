@@ -4,16 +4,47 @@ import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class Crud {
 
-	
+	private String port;
 	private String ipRegistre;
-	private static String ipServeurBDD = "jdbc:mysql://192.168.3.62/mission2registry";
+	private static String ipServeurBDD = "jdbc:mysql://localhost/mission2registry";
 	private static String login = "root";
 	private static String password = "";
 	private String nomDB;
+	private String nomTable;
+	public static ArrayList<String> getTablesNames() throws SQLException{
+		  ArrayList<String> retour=new ArrayList<String>();
+		  Connection conn = DriverManager.getConnection(ipServeurBDD, login, password);
+          Statement stmt = conn.createStatement();
+          ResultSet rs = stmt.executeQuery("SHOW TABLES");
+          
+          while(rs.next()){
+        	  //System.out.println(rs.getString(1));
+        	  retour.add(rs.getString(1));      	  
+          }
+    	  return retour;
+	}
+	public Crud() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Crud(String port, String ipRegistre, String nomTable) {
+		super();
+		this.port = port;
+		this.ipRegistre = ipRegistre;
+		this.nomTable = nomTable;
+	}
+	@Override
+	public String toString() {
+		return "Crud [port=" + port + ", ipRegistre=" + ipRegistre + ", nomDB=" + nomDB + ", nomTable=" + nomTable
+				+ ", tableEnregistrements=" + tableEnregistrements + ", cn=" + cn + ", st=" + st + ", rs=" + rs + "]";
+	}
 	private String tableEnregistrements;
 	public Connection cn;
 	java.sql.Statement st;
@@ -26,9 +57,9 @@ public class Crud {
             public void run() {
                 // L'essaie de connexion à votre base de donées
             	try {
-                    Class.forName("com.mysql.jdbc.Driver");
-                    Connection conn = DriverManager.getConnection(ipServeurBDD, login, password);
-                    System.out.println("Connecté");
+                    getTablesNames();
+            		Class.forName("com.mysql.jdbc.Driver");
+                    
                 } catch (Exception e){
                     e.printStackTrace();
                     System.out.println("Erreur");
@@ -87,7 +118,7 @@ public class Crud {
 	}
 
 	public Crud(String ipRegistre, String ipServeurBDD, String login, String password, String nomDB,
-			String tableEnregistrements) {
+			String tableEnregistrements, String port) {
 		super();
 		this.ipRegistre = ipRegistre;
 		this.ipServeurBDD = ipServeurBDD;
@@ -95,6 +126,7 @@ public class Crud {
 		this.password = password;
 		this.nomDB = nomDB;
 		this.tableEnregistrements = tableEnregistrements; 
+		this.port = port;
 	}
 
 	private void readAllWS(){

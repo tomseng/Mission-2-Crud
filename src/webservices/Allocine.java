@@ -2,7 +2,7 @@ package webservices;
 
 import network.Container;
 
-public class Allocine implements Container{
+public class Allocine {
 
 	
 	private String nomFilm;
