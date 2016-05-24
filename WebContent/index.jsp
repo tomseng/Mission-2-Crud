@@ -9,7 +9,7 @@
 <body>
 <form method="post" action="traitement.php">
    <p>
-       <label for="Nom">Votre pseudo :</label>
+       <label for="Nom">Créer webservice :</label>
        <input type="text" name="pseudo" id="pseudo" />
        
 
