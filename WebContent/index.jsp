@@ -4,14 +4,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Accueil</title>
+<title>Créer un webservice</title>
 </head>
 <body>
 <form method="post" action="traitement.php">
    <p>
-       <label for="Nom">Créer webservice :</label>
-       <input type="text" name="pseudo" id="pseudo" />
-       
+       <label for="name">Créer webservice :</label>
+       <input type="text" name="name" id="name" />
+   </p>
+   <p>
+   		<label for="IP">IP:</label>
+   		<input type="text" name="ip" id="ip" />
+   	</p>
+   	<p>
+   		<label for="Champs">Champs:</label>
+   		<input type="textarea" name="champs" id="champs" />
+   	</p>
 
        
    </p>
