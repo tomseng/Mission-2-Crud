@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 
 public class Test {
 
-	public static void main(String[] args) {
+	/**public static void main(String[] args) {
 		
 		InetAddress localAdress;
 		InetAddress serverAdress;
@@ -21,5 +21,10 @@ public class Test {
 			
 			e.printStackTrace();
 		}
+	}*/
+	
+	public static void main(String[] args){
+	
+		
 	}
 }

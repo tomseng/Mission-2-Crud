@@ -1,7 +1,10 @@
 package webservices;
 
-public class Allocine {
+import network.Container;
 
+public class Allocine implements Container{
+
+	
 	private String nomFilm;
 	private String synopsisFilm;
 	private String auteursFilm;

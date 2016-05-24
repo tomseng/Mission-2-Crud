@@ -10,7 +10,7 @@ public class Crud {
 
 	
 	private String ipRegistre;
-	private static String ipServeurBDD = "jdbc:mysql://172.20.10.3/mission2registry";
+	private static String ipServeurBDD = "jdbc:mysql://192.168.3.62/mission2registry";
 	private static String login = "root";
 	private static String password = "";
 	private String nomDB;
@@ -97,4 +97,20 @@ public class Crud {
 		this.tableEnregistrements = tableEnregistrements; 
 	}
 
+	private void readAllWS(){
+		//requete SQL
+	}
+	private void createWS(){
+		//requete SQL
+	}
+	private void readWSbyName(){
+		//requete SQL
+	}
+	private void deleteWS(){
+		//requete SQL
+	}
+
 }
+	
+	
+
