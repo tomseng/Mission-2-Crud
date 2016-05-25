@@ -1,7 +1,9 @@
 package network;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -72,9 +74,19 @@ public class Client implements ActionListener{
 
 		try {
 		     //socket = new Socket(InetAddress.getLocalHost(),4485);	
-		     socket = new Socket("192.168.0.74",4485);	
+		     socket = new Socket("192.168.0.74",4485);
+		     //socket.connect(endpoint);
+		     BufferedReader br=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		     while(true)
+		     {
+		    	
+		    	System.out.println("recue du client     << "+br.readLine());
+				//System.out.print("a envoyer au client >> ");
+				//chaine_a_transmettre = stdin.readLine();
+				//fluxEcriture.println(chaine_a_transmettre);
 
-	             socket.close();
+		     }
+	          //socket.close();
 
 		}catch (UnknownHostException e) {
 			
