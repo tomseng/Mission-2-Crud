@@ -16,6 +16,18 @@ public class Registry {
 	public HashMap<String, String[]> getEnregistrements() {
 		return enregistrements;
 	}
+	
+	public Object[][] getEnregistrementsToObjects() {
+		Object[][] retour=new Object[enregistrements.size()][];
+		int i=0;
+		for(String key:enregistrements.keySet()){
+			for(int j=0; j<enregistrements.get(key).length; j++){
+				retour[i][j]=enregistrements.get(key)[j];
+			}
+			i++;
+		}
+		return retour;
+	}
 	public void addTable(String nomTable, String[] Ipport){
 		enregistrements.put(nomTable, Ipport);
 	}
