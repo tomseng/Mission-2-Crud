@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,12 +21,14 @@ public class Registry {
     
     
 	 
-	public HashMap<String, String[]> getEnregistrements() {
+	public static HashMap<String, String[]> getEnregistrements() {
 		return enregistrements;
 	}
 	
 	public static Object[][] getEnregistrementsToObjects() {
-		Object[][] retour=new Object[enregistrements.size()][];
+		
+		//System.out.println(enregistrements.size());
+		Object[][] retour=new Object[getEnregistrements().size()][];
 		int i=0;
 		System.out.println("ok ");
 		for(String key:enregistrements.keySet()){
@@ -61,24 +64,26 @@ public class Registry {
 	}
 
 	
-	public static void main(String[] zero) {
+	public static void main(String[] zero) throws SQLException {
 		
 		ServerSocket socketserver  ;
 		Socket socketduserveur ;
 				
 		//TestApp();
 		try {
-			Container ct1 = new Container();
+			Container ct1=new Container();
+			//ct1.main(args);
 			socketserver = new ServerSocket(4485);
 			System.out.println("Le registre Ã©coute les connexions sur le port "  + socketserver.getLocalPort()+"...");
 
 			socketduserveur = socketserver.accept(); 
-			ObjectOutputStream fluxEcriture = (ObjectOutputStream) socketduserveur.getOutputStream();
+			ObjectOutputStream fluxEcriture = new ObjectOutputStream(socketduserveur.getOutputStream());
 
 			System.out.println("Un client s'est connecté !");
 			while(true)
 			{
-				fluxEcriture.writeObject(getEnregistrementsToObjects());
+				System.out.println(getEnregistrementsToObjects()+"ok");
+				//fluxEcriture.writeObject(getEnregistrementsToObjects());
 			}
 			
 		        //socketserver.close();
