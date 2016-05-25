@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -14,7 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JList;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
@@ -92,13 +95,13 @@ public class Client implements ActionListener{
 
 		try {
 		     //socket = new Socket(InetAddress.getLocalHost(),4485);	
-		     socket = new Socket("192.168.0.85",4485);
+		     socket = new Socket("192.168.1.81",4485);
 		     //socket.connect(endpoint);
-		     BufferedReader br=new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		     while(br.readLine()!=null)
+		     ObjectInputStream br=new ObjectInputStream(socket.getInputStream());
+		     while(br.read()!=-1)
 		     {
 		    	
-		    	System.out.println("recue du client     << "+br.readLine());
+		    	System.out.println("recue du client     << "+br.read());
 				//System.out.print("a envoyer au client >> ");
 				//chaine_a_transmettre = stdin.readLine();
 				//fluxEcriture.println(chaine_a_transmettre);

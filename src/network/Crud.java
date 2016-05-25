@@ -14,7 +14,7 @@ public class Crud {
 
 	private String port;
 	private String ipRegistre;
-	private static String ipServeurBDD = "jdbc:mysql://192.168.0.85/mission2registry";
+	private static String ipServeurBDD = "jdbc:mysql://localhost/mission2registry";
 	private static String login = "root";
 	private static String password = "";
 	private String nomDB;

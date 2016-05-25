@@ -75,16 +75,16 @@ public class Registry {
 			Container ct1=new Container();
 			//ct1.main(args);
 			socketserver = new ServerSocket(4485);
-			System.out.println("Le registre Ã©coute les connexions sur le port "  + socketserver.getLocalPort()+"...");
+			System.out.println("Le registre écoute les connexions sur le port "  + socketserver.getLocalPort()+"...");
 
 			socketduserveur = socketserver.accept(); 
 			ObjectOutputStream fluxEcriture = new ObjectOutputStream(socketduserveur.getOutputStream());
 
-			System.out.println("Un client s'est connecté !");
+			//System.out.println("Un client s'est connecté !");
 			//while(true)
 			//{
-				System.out.println(getEnregistrementsToObjects()+"ok");
-				//fluxEcriture.writeObject(getEnregistrementsToObjects());
+				System.out.println(getEnregistrementsToObjects());
+				fluxEcriture.writeObject(getEnregistrementsToObjects());
 			//}
 			
 		        socketserver.close();
