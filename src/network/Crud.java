@@ -1,7 +1,6 @@
 package network;
 
 import java.awt.EventQueue;
-//192.168.0.65
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

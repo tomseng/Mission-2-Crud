@@ -72,16 +72,16 @@ public class Container {
 				req="INSERT INTO "+table+" VALUES(";
 				for(int i=0; i<donnees.length; i++)
 				{
-					if(i==donnees.length-1)
+					if(i<donnees.length-1)
 					{
 						req+=" "+donnees[i]+",";
 					}
 					else
 					{
 						req+=" "+donnees[i]+");";
-					}
-					System.out.println(req);
+					}				
 				}
+				System.out.println(req);
 				stmt = conn.createStatement();   
 				rs = stmt.executeQuery(req);
 		        while(rs.next()){
@@ -89,7 +89,7 @@ public class Container {
 		        }
 				break;
 			case "read":
-				preparedstmt = (PreparedStatement) conn.prepareStatement("SELECT * FROM "+table);
+				preparedstmt = (PreparedStatement) conn.prepareStatement("SELECT * FROM "+table+";");
 				rs = preparedstmt.executeQuery();
 				while(rs.next()){
 					String[] tab=new String[rs.getMetaData().getColumnCount()];
@@ -100,28 +100,44 @@ public class Container {
 		        }
 				break;
 			case "update":
-				/*req="UPDATE "+table+" SET ";
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery("SELECT * FROM "+table+" LIMIT 1;");
+				req="UPDATE "+table+" SET ";
 				for(int i=0; i<donnees.length; i++)
 				{
-					if(i==donnees.length-1)
+					if(i<donnees.length-1)
 					{
-						req+=" "+donnees[i]+",";
+						req+=rs.getMetaData().getColumnName(i+1)+"="+donnees[i]+", ";
 					}
 					else
 					{
-						req+=" "+donnees[i]+");";
-					}
-					System.out.println(req);
+						req+=rs.getMetaData().getColumnName(i+1)+"="+donnees[i]+" WHERE id="+donnees[0]+";";
+					}	
 				}
-				stmt = conn.createStatement();   
+				rs.close();
 				rs = stmt.executeQuery(req);
+				System.out.println(req);
 		        while(rs.next()){
 		        	//retour=rs.getInt(1);
-		        }*/
+		        }
 				break;
 			case "delete":
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery("DELETE FROM "+table+" WHERE id="+donnees[0]+";");
+				 while(rs.next()){
+			        	//retour=rs.getInt(1);
+			    }
 				break;
 			case "list":
+				preparedstmt = (PreparedStatement) conn.prepareStatement("SELECT * FROM "+table+";");
+				rs = preparedstmt.executeQuery();
+				while(rs.next()){
+					String[] tab=new String[rs.getMetaData().getColumnCount()];
+		        	for(int i=0; i<rs.getMetaData().getColumnCount(); i++){
+		        		tab[i]= (String) rs.getObject(i+1);
+		        	}
+		        	retour.add(tab);
+		        }
 				break;
 			default:
 				break;
