@@ -14,7 +14,7 @@ import java.util.HashMap;
 import com.mysql.jdbc.PreparedStatement;
 
 public class Container {
-	private static String ipServeurBDD = "jdbc:mysql://192.168.0.65/mission2registry";
+	private static String ipServeurBDD = "jdbc:mysql://localhost/mission2registry";
 	private static String login = "root";
 	private static String password = "";
 	private String nomDB;
@@ -143,5 +143,9 @@ public class Container {
 				break;
 		}
 		return retour;
+	}
+	public Container() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 }
