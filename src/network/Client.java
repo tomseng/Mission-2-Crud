@@ -85,11 +85,11 @@ public class Client implements ActionListener{
 		table.setBounds(223, 76, 371, 246);
 		jf1.getContentPane().add(table);
 		
-		Registry reg = new Registry();
+		//Registry reg = new Registry();
 		
-		table_1 = new JTable(reg.getEnregistrementsToObjects(),title);
+		/*table_1 = new JTable(reg.getEnregistrementsToObjects(),title);
 		table_1.setBounds(6, 76, 172, 93);
-		jf1.getContentPane().add(table_1);
+		jf1.getContentPane().add(table_1);*/
 
 		Socket socket;
 
@@ -107,7 +107,7 @@ public class Client implements ActionListener{
 				//fluxEcriture.println(chaine_a_transmettre);
 
 		     }
-	          //socket.close();
+	         socket.close();
 
 		}catch (UnknownHostException e) {
 			

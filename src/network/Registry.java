@@ -29,7 +29,7 @@ public class Registry {
 		Object[][] retour=new Object[getEnregistrements().size()][];
 		//System.out.println(enregistrements.size());
 		int i=0;
-		System.out.println("ok ");
+		//System.out.println("ok ");
 		for(String key:enregistrements.keySet()){
 			Object[] r=new Object[enregistrements.get(key).length];
 			for(int j=0; j<enregistrements.get(key).length; j++){
@@ -83,12 +83,12 @@ public class Registry {
 			//System.out.println("Un client s'est connecté !");
 			//while(true)
 			//{
-				System.out.println(getEnregistrementsToObjects());
+				//System.out.println(getEnregistrementsToObjects());
 				fluxEcriture.writeObject(getEnregistrementsToObjects());
 			//}
 			
-		        socketserver.close();
-		        socketduserveur.close();
+		       // socketserver.close();
+		       // socketduserveur.close();
 
 		}catch (IOException e) {
 			e.printStackTrace();
