@@ -22,6 +22,7 @@ import javax.swing.JTable;
 
 public class Client implements ActionListener{
 	private static JTable table;
+	private static JTable table_1;
 	
 	
 	public static void main(String[] args) throws SQLException {
@@ -57,7 +58,7 @@ public class Client implements ActionListener{
 		lblWebservice.setBounds(397, 40, 76, 16);
 		jf1.getContentPane().add(lblWebservice);
 		
-		JButton btnCrerUneEntre = new JButton("CrÈer une entrÈe");
+		JButton btnCrerUneEntre = new JButton("Cr√©er une entr√©e");
 		btnCrerUneEntre.setBounds(26, 180, 140, 29);
 		jf1.getContentPane().add(btnCrerUneEntre);
 		
@@ -66,9 +67,26 @@ public class Client implements ActionListener{
 		txtpnBox.setBounds(6, 218, 172, 104);
 		jf1.getContentPane().add(txtpnBox);
 		
-		table = new JTable();
+		 //Les donn√©es du tableau
+	    Object[][] data = {
+	      {"Cysboy", "28 ans", "1.80 m"},
+	      {"BZHHydde", "28 ans", "1.80 m"},
+	      {"IamBow", "24 ans", "1.90 m"},
+	      {"FunMan", "32 ans", "1.85 m"}
+	    };
+
+	    //Les titres des colonnes
+	    String  title[] = {"Pseudo", "Age", "Taille"};
+		
+		table = new JTable(data,title);
 		table.setBounds(223, 76, 371, 246);
 		jf1.getContentPane().add(table);
+		
+		Registry reg = new Registry();
+		
+		table_1 = new JTable(reg.getEnregistrementsToObjects(),title);
+		table_1.setBounds(6, 76, 172, 93);
+		jf1.getContentPane().add(table_1);
 
 		Socket socket;
 
@@ -77,7 +95,7 @@ public class Client implements ActionListener{
 		     socket = new Socket("192.168.0.85",4485);
 		     //socket.connect(endpoint);
 		     BufferedReader br=new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		     while(true)
+		     while(br.readLine()!=null)
 		     {
 		    	
 		    	System.out.println("recue du client     << "+br.readLine());
