@@ -97,9 +97,10 @@
 		<div class="col-md-4">
 			<input id="ip" name="ip" type="text" placeholder="" class="form-control input-md" required="">
 			<span class="help-block">Entrer l'IP du WebService</span>
-		  	<section>
+		  	<label for="multifield" >Champs</label>
+			<section>
 			    <div id="initRow">
-			        <input name="multifield" placeholder="Value">
+			        <input name="multifield" id="multifield" placeholder="Value">
 			    </div>
 			</section>
 		</div>
