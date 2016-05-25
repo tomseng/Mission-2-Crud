@@ -28,14 +28,14 @@ public class Client implements ActionListener{
 	public static void main(String[] args) throws SQLException {
 		
 		
-		Container ct1 = new Container();
-		ArrayList<String[]> tab =  ct1.webService("read", "table1", new String[0]);
+		//Container ct1 = new Container();
+		/*ArrayList<String[]> tab =  ct1.webService("read", "table1", new String[0]);
 		for(int i=0; i<tab.size(); i++){
 			for(int j=0; j<tab.get(i).length; j++){
 				System.out.print(tab.get(i)[j]+" ");
 			}
 			System.out.println(tab.size());
-		}
+		}*/
 		JFrame jf1 = new JFrame();
 		JPanel jp1 = new JPanel();
 		jp1.setName("panel1");
