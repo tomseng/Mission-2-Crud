@@ -44,7 +44,7 @@ public class Client implements ActionListener{
 		lblWebservice.setBounds(397, 40, 76, 16);
 		jf1.getContentPane().add(lblWebservice);
 		
-		JButton btnCrerUneEntre = new JButton("CrÃ©er une entrÃ©e");
+		JButton btnCrerUneEntre = new JButton("Créer une entrée");
 		btnCrerUneEntre.setBounds(26, 180, 140, 29);
 		jf1.getContentPane().add(btnCrerUneEntre);
 		
