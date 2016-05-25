@@ -55,3 +55,7 @@ WebContent/index.jsp
 *.class
 
 *.class
+
+*.class
+
+build/classes/network/Registry.class

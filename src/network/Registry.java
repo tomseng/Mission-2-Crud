@@ -27,7 +27,6 @@ public class Registry {
 	public static Object[][] getEnregistrementsToObjects() {
 		Object[][] retour=new Object[enregistrements.size()][];
 		int i=0;
-		System.out.println("ok ");
 		for(String key:enregistrements.keySet()){
 			for(int j=0; j<enregistrements.get(key).length; j++){
 				retour[i][j]=enregistrements.get(key)[j];

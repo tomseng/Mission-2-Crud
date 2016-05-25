@@ -14,7 +14,7 @@ import java.util.HashMap;
 import com.mysql.jdbc.PreparedStatement;
 
 public class Container {
-	private static String ipServeurBDD = "jdbc:mysql://localhost/mission2registry";
+	private static String ipServeurBDD = "jdbc:mysql://192.168.0.85/mission2registry";
 	private static String login = "root";
 	private static String password = "";
 	private String nomDB;
@@ -44,11 +44,11 @@ public class Container {
 		try {
 		
 			socketserver = new ServerSocket(754);
-			System.out.println("Le registre écoute les connexions sur le port "  + socketserver.getLocalPort()+"...");
+			System.out.println("Le registre ï¿½coute les connexions sur le port "  + socketserver.getLocalPort()+"...");
 
 			socketduserveur = socketserver.accept(); 
 
-			System.out.println("Un client s'est connecté !");
+			System.out.println("Un client s'est connectï¿½ !");
 		        socketserver.close();
 		        socketduserveur.close();
 
@@ -58,7 +58,7 @@ public class Container {
 	}
 	// type : CRUD
 	// table : nom table
-	// donnees : critères de sélection/données à inserer
+	// donnees : critï¿½res de sï¿½lection/donnï¿½es ï¿½ inserer
 	public ArrayList<String[]> webService(String type, String table, String[] donnees) throws SQLException{
 		ArrayList<String[]> retour=new ArrayList<String[]>();
 		Connection conn = DriverManager.getConnection(ipServeurBDD, login, password);
