@@ -45,7 +45,7 @@ public class Client implements ActionListener{
 	private static JTable contentWS;
 	private static String ipServeurBDD = "jdbc:mysql://192.168.0.74/mission2registry";
 	private static String login = "root";
-	private static String password = "";
+	private static String password = "root";
 	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		final JFrame jf1 = new JFrame();
