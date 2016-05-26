@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ import java.awt.BorderLayout;
 import javax.swing.JList;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -34,6 +36,8 @@ import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class Client implements ActionListener{
@@ -41,20 +45,10 @@ public class Client implements ActionListener{
 	private static JTable contentWS;
 	private static String ipServeurBDD = "jdbc:mysql://192.168.0.74/mission2registry";
 	private static String login = "root";
-	private static String password = "root";
+	private static String password = "";
 	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
-		
-		
-		//Container ct1 = new Container();
-		/*ArrayList<String[]> tab =  ct1.webService("read", "table1", new String[0]);
-		for(int i=0; i<tab.size(); i++){
-			for(int j=0; j<tab.get(i).length; j++){
-				System.out.print(tab.get(i)[j]+" ");
-			}
-			System.out.println(tab.size());
-		}*/
-		JFrame jf1 = new JFrame();
+		final JFrame jf1 = new JFrame();
 		JPanel jp1 = new JPanel();
 		jp1.setName("panel1");
 		jf1.setSize(600, 350);
@@ -63,7 +57,7 @@ public class Client implements ActionListener{
 		jf1.setVisible(true);
 		jf1.setLocation(400, 200);
 		jf1.getContentPane().setLayout(null);
-		
+		contentWS=new JTable();
 		JLabel lblGestionnaireDeWebservice = new JLabel("Gestionnaire de WebService");
 		lblGestionnaireDeWebservice.setBounds(223, 6, 172, 16);
 		jf1.getContentPane().add(lblGestionnaireDeWebservice);
@@ -76,10 +70,6 @@ public class Client implements ActionListener{
 		});
 		btnListerLesWebservices.setBounds(6, 35, 172, 29);
 		jf1.getContentPane().add(btnListerLesWebservices);
-		
-		
-		
-		
 		
 		final JTextPane txtpnBox = new JTextPane();
 		txtpnBox.addKeyListener(new KeyAdapter() {
@@ -163,53 +153,6 @@ public class Client implements ActionListener{
 		btnUpdate.setBounds(266, 277, 117, 29);
 		jf1.getContentPane().add(btnUpdate);
 		
-		/*String  title[] = {"IP", "Port", "Nom"};
-		   Object[][] data={
-				   {"192.65.5.1", "85","table1"}
-		   };
-		 listeWS = new JTable(data, title);
-		   listeWS.setBounds(6, 65, 172, 93);
-			jf1.getContentPane().add(listeWS);
-			ArrayList<String[]> donnees=new ArrayList<String[]>();
-			ArrayList<String[]> titres=new ArrayList<String[]>();
-			String table=(String) listeWS.getValueAt(listeWS.getSelectedRow()!=-1 ? 
-			listeWS.getSelectedRow() : 0, 2);
-			String[] donn=new String[0];
-			try {
-				donnees=webService("read", table, donn);
-				titres=webService("titres", table, donn);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			Object[][] donneesObject=getArrayListToObjectsDonnees(donnees);
-			String  titreTab[] = getArrayListToObjectsTitres(titres);
-			contentWS = new JTable(donneesObject!=null ? donneesObject : null, titreTab);
-			contentWS.addPropertyChangeListener(new PropertyChangeListener() {
-				public void propertyChange(PropertyChangeEvent evt) {
-					System.out.println("property changed");
-				}
-			});
-			contentWS.setBounds(201, 65, 393, 200);
-			jf1.getContentPane().add(contentWS);
-			
-			JLabel lblContenuDuWebservic = new JLabel("Contenu du WebService");
-			lblContenuDuWebservic.setBounds(325, 40, 152, 16);
-			jf1.getContentPane().add(lblContenuDuWebservic);
-		   *
-		   */
-		   
-
-		
-		//table.setBounds(223, 76, 371, 246);
-		//jf1.getContentPane().add(table);
-		
-		//Registry reg = new Registry();
-		
-		/*table_1 = new JTable(reg.getEnregistrementsToObjects(),title);
-		table_1.setBounds(6, 76, 172, 93);
-		jf1.getContentPane().add(table_1);*/
-
 		Socket socket;
 
 		try {
@@ -217,32 +160,72 @@ public class Client implements ActionListener{
 		      ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 		      Object[][] donne = (Object[][]) ois.readObject();
 		      System.out.println("reçue du client     << "+donne[0][0]);
+		      //listWS
 		      //Les titres des colonnes
-			   String  title[] = {"IP", "Port", "Nom"};
-			  
+			  String  title[] = {"IP", "Port", "Nom"};
 			   listeWS = new JTable(donne, title);
+			   listeWS.addMouseListener(new MouseAdapter() {
+			   	@Override
+			   	public void mouseClicked(MouseEvent arg0) {
+			   		//System.out.println("ListWS clicked !");
+			   		ArrayList<String[]> donnees=new ArrayList<String[]>();
+					ArrayList<String[]> titres=new ArrayList<String[]>();
+					String table=(String) listeWS.getValueAt(listeWS.getSelectedRow()!=-1 ? 
+					listeWS.getSelectedRow() : 0, 2);
+					String[] donn=new String[0];
+					try {
+						donnees=webService("read", table, donn);
+						titres=webService("titres", table, donn);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					Object[][] donneesObject=getArrayListToObjectsDonnees(donnees);
+					String  titreTab[] = getArrayListToObjectsTitres(titres);
+					DefaultTableModel model;
+					Vector<String> columnNames = new Vector<String>();
+					Vector<Vector<String>> data = new Vector<Vector<String>>();
+					if(donneesObject.length!=0)
+					{
+						for(Object[] objTab:donneesObject)
+						{
+							Vector<String> v=new Vector<String>();
+							for(int i=0; i<objTab.length; i++){							
+								v.add(""+objTab[i]);
+							}
+							data.addElement(v);
+						}
+						for(String str:titreTab)
+						{
+							columnNames.addElement(str);
+						}
+						model = new DefaultTableModel(data,columnNames);
+					}
+					else
+					{
+						data.clear();
+						columnNames.clear();
+						model = new DefaultTableModel(data,columnNames);
+						model.setRowCount(0);
+					}
+					contentWS.setModel(model);
+					model.fireTableDataChanged();
+					contentWS.setBounds(201, 65, 393, 200);
+					jf1.getContentPane().add(contentWS);
+			   	}
+			   });
 			   listeWS.setBounds(6, 65, 172, 93);
 				jf1.getContentPane().add(listeWS);
-				ArrayList<String[]> donnees=new ArrayList<String[]>();
-				ArrayList<String[]> titres=new ArrayList<String[]>();
-				String table=(String) listeWS.getValueAt(listeWS.getSelectedRow()!=-1 ? 
-				listeWS.getSelectedRow() : 0, 2);
-				String[] donn=new String[0];
-				try {
-					donnees=webService("read", table, donn);
-					titres=webService("titres", table, donn);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				Object[][] donneesObject=getArrayListToObjectsDonnees(donnees);
-				String  titreTab[] = getArrayListToObjectsTitres(titres);
-				contentWS = new JTable(donneesObject!=null ? donneesObject : null, titreTab);
-				contentWS.addPropertyChangeListener(new PropertyChangeListener() {
-					public void propertyChange(PropertyChangeEvent evt) {
-						System.out.println("property changed");
-					}
-				});
+				//contentWS
+				DefaultTableModel model;
+				Vector<String> columnNames = new Vector<String>();
+				Vector<Vector<String>> data = new Vector<Vector<String>>();
+				data.clear();
+				columnNames.clear();
+				model = new DefaultTableModel(data,columnNames);
+				model.setRowCount(0);
+				contentWS.setModel(model);
+				model.fireTableDataChanged();
 				contentWS.setBounds(201, 65, 393, 200);
 				jf1.getContentPane().add(contentWS);
 				
@@ -288,9 +271,6 @@ public class Client implements ActionListener{
 				stmt = conn.createStatement();   
 				stmt.execute(req);
 				stmt.close();
-		       /* while(rs.next()){
-		        	//retour=rs.getInt(1);
-		        }*/
 				break;
 			case "read":
 				preparedstmt = (PreparedStatement) conn.prepareStatement("SELECT * FROM "+table+";");
