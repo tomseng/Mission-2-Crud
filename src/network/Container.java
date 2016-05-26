@@ -21,18 +21,18 @@ public class Container {
 	
 	public static void main(String[] args) throws SQLException, IOException {
 		
-		ServerSocket socketserver = new ServerSocket(4486);
-		Socket socketduserveur=socketserver.accept() ;
+		Socket socket = new Socket("192.168.0.85",4485);
+		//Socket socketduserveur=socketserver.accept() ;
 		Crud cr1 = new Crud();
 		HashMap<String, String[]> m=new HashMap<String, String[]>();
 		Registry reg = new Registry();
 		ArrayList<String> nomTables = cr1.getTablesNames();
 		for(String ws:nomTables)
 		{
-			new Crud(""+socketserver.getLocalPort(), socketserver.getInetAddress().toString(), ws);
+			new Crud(""+socket.getLocalPort(), socket.getLocalAddress().toString(), ws);
 			String[] tab=new String[3];
-			tab[0]=socketserver.getInetAddress().toString();
-			tab[1]=""+socketserver.getLocalPort();
+			tab[0]=socket.getLocalAddress().toString();
+			tab[1]=""+socket.getLocalPort();
 			tab[2]=ws;
 			reg.addTable(ws, tab);
 			m=reg.getEnregistrements();
