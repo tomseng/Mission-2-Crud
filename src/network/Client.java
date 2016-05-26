@@ -61,7 +61,7 @@ public class Client implements ActionListener{
 		lblWebservice.setBounds(397, 40, 76, 16);
 		jf1.getContentPane().add(lblWebservice);
 		
-		JButton btnCrerUneEntre = new JButton("CrÃ©er une entrÃ©e");
+		JButton btnCrerUneEntre = new JButton("Créer une entrée");
 		btnCrerUneEntre.setBounds(26, 180, 140, 29);
 		jf1.getContentPane().add(btnCrerUneEntre);
 		
@@ -95,13 +95,13 @@ public class Client implements ActionListener{
 
 		try {
 		     //socket = new Socket(InetAddress.getLocalHost(),4485);	
-		     socket = new Socket("192.168.1.81",4485);
+		     socket = new Socket("192.168.0.85",4485);
 		     //socket.connect(endpoint);
 		     ObjectInputStream br=new ObjectInputStream(socket.getInputStream());
 		     while(br.read()!=-1)
 		     {
 		    	
-		    	System.out.println("recue du client     << "+br.read());
+		    	System.out.println("reçue du client     << "+br.read());
 				//System.out.print("a envoyer au client >> ");
 				//chaine_a_transmettre = stdin.readLine();
 				//fluxEcriture.println(chaine_a_transmettre);
