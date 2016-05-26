@@ -14,9 +14,9 @@ import java.util.HashMap;
 import com.mysql.jdbc.PreparedStatement;
 
 public class Container {
-	private static String ipServeurBDD = "jdbc:mysql://192.168.0.85/mission2registry";
+	private static String ipServeurBDD = "jdbc:mysql://192.168.0.74/mission2registry";
 	private static String login = "root";
-	private static String password = "";
+	private static String password = "root";
 	private String nomDB;
 	
 	public static void main(String[] args) throws SQLException, IOException {
