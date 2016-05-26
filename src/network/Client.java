@@ -21,11 +21,18 @@ import java.awt.BorderLayout;
 import javax.swing.JList;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 public class Client implements ActionListener{
-	private static JTable table;
+	private static JTable listeWS;
 	private static JTable table_1;
+	private static JTable contentWS;
 	
 	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
@@ -54,34 +61,41 @@ public class Client implements ActionListener{
 		jf1.getContentPane().add(lblGestionnaireDeWebservice);
 		
 		JButton btnListerLesWebservices = new JButton("Lister les Webservices");
+		btnListerLesWebservices.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Lister les webservice");
+			}
+		});
 		btnListerLesWebservices.setBounds(6, 35, 172, 29);
 		jf1.getContentPane().add(btnListerLesWebservices);
 		
-		JLabel lblWebservice = new JLabel("WebService");
-		lblWebservice.setBounds(397, 40, 76, 16);
-		jf1.getContentPane().add(lblWebservice);
-		
-		JButton btnCrerUneEntre = new JButton("Cr�er une entr�e");
-		btnCrerUneEntre.setBounds(26, 180, 140, 29);
+		JButton btnCrerUneEntre = new JButton("Creer une entree");
+		btnCrerUneEntre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Créer une entrée");
+			}
+		});
+		btnCrerUneEntre.setBounds(6, 170, 172, 29);
 		jf1.getContentPane().add(btnCrerUneEntre);
 		
-		JTextPane txtpnBox = new JTextPane();
+		
+		final JTextPane txtpnBox = new JTextPane();
+		txtpnBox.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				System.out.println(txtpnBox.getText().toString());
+			}
+		});
+		
+		
 		txtpnBox.setText("Box");
-		txtpnBox.setBounds(6, 218, 172, 104);
+		txtpnBox.setBounds(6, 211, 172, 111);
 		jf1.getContentPane().add(txtpnBox);
 		
-		 //Les données du tableau
-	    Object[][] data = {
-	      {"Cysboy", "28 ans", "1.80 m"},
-	      {"BZHHydde", "28 ans", "1.80 m"},
-	      {"IamBow", "24 ans", "1.90 m"},
-	      {"FunMan", "32 ans", "1.85 m"}
-	    };
+		 
 
-	    //Les titres des colonnes
-	    String  title[] = {"Pseudo", "Age", "Taille"};
+	    
 		
-		//table = new JTable(donne,title);
 		//table.setBounds(223, 76, 371, 246);
 		//jf1.getContentPane().add(table);
 		
@@ -107,9 +121,41 @@ public class Client implements ActionListener{
 				//System.out.print("a envoyer au client >> ");
 				//chaine_a_transmettre = stdin.readLine();
 				//fluxEcriture.println(chaine_a_transmettre);
-		    	table = new JTable(donne,title);
-				table.setBounds(223, 76, 371, 246);
-				jf1.getContentPane().add(table);
+		    	//Les titres des colonnes
+			    String  title[] = {"IP", "Port", "Nom"};
+		    	
+		    	listeWS = new JTable(donne, title);
+				listeWS.setBounds(6, 65, 172, 93);
+				jf1.getContentPane().add(listeWS);
+				
+				contentWS = new JTable();
+				contentWS.addPropertyChangeListener(new PropertyChangeListener() {
+					public void propertyChange(PropertyChangeEvent evt) {
+						System.out.println("property changed");
+					}
+				});
+				contentWS.setBounds(201, 65, 393, 200);
+				jf1.getContentPane().add(contentWS);
+				
+				JLabel lblContenuDuWebservic = new JLabel("Contenu du WebServic");
+				lblContenuDuWebservic.setBounds(325, 40, 152, 16);
+				jf1.getContentPane().add(lblContenuDuWebservic);
+				
+				JButton btnDelete = new JButton("Delete");
+				btnDelete.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				btnDelete.setBounds(443, 277, 117, 29);
+				jf1.getContentPane().add(btnDelete);
+				
+				JButton btnUpdate = new JButton("Update");
+				btnUpdate.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				btnUpdate.setBounds(266, 277, 117, 29);
+				jf1.getContentPane().add(btnUpdate);
 
 		     //}
 	         socket.close();
