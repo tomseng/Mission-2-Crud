@@ -19,42 +19,27 @@ public class Container {
 	private static String password = "";
 	private String nomDB;
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, IOException {
 		
-		ServerSocket socketserver  ;
-		Socket socketduserveur ;
+		ServerSocket socketserver = new ServerSocket(4486);
+		Socket socketduserveur=socketserver.accept() ;
 		Crud cr1 = new Crud();
-		
+		HashMap<String, String[]> m=new HashMap<String, String[]>();
+		Registry reg = new Registry();
 		ArrayList<String> nomTables = cr1.getTablesNames();
 		for(String ws:nomTables)
 		{
-			new Crud("80", "192.168.1.93", ws);
-			Registry reg = new Registry();
+			new Crud(""+socketserver.getLocalPort(), socketserver.getInetAddress().toString(), ws);
 			String[] tab=new String[3];
-			tab[0]="192.168.1.93";
-			tab[1]="80";
+			tab[0]=socketserver.getInetAddress().toString();
+			tab[1]=""+socketserver.getLocalPort();
 			tab[2]=ws;
 			reg.addTable(ws, tab);
-			HashMap<String, String[]> m=reg.getEnregistrements();
+			m=reg.getEnregistrements();
 			for(String p:m.get(ws)){
 				System.out.println(p);
 			}
-		}	
-		//TestApp();
-		/*try {
-		
-			socketserver = new ServerSocket(754);
-			System.out.println("Le registre �coute les connexions sur le port "  + socketserver.getLocalPort()+"...");
-
-			socketduserveur = socketserver.accept(); 
-
-			System.out.println("Un client s'est connect� !");
-		        socketserver.close();
-		        socketduserveur.close();
-
-		}catch (IOException e) {
-			e.printStackTrace();
-		}*/
+		}
 	}
 	// type : CRUD
 	// table : nom table
@@ -144,23 +129,23 @@ public class Container {
 		}
 		return retour;
 	}
-	public Container() throws SQLException {
+	public Container(String adresseIP,String port) throws SQLException {
 		super();
-		ServerSocket socketserver  ;
+		ServerSocket socketserver = null ;
 		Socket socketduserveur ;
 		Crud cr1 = new Crud();
-		
+		HashMap<String, String[]> m=new HashMap<String, String[]>();
+		Registry reg = new Registry();
 		ArrayList<String> nomTables = cr1.getTablesNames();
 		for(String ws:nomTables)
 		{
-			new Crud("80", "192.168.1.93", ws);
-			Registry reg = new Registry();
+			new Crud(port, adresseIP, ws);
 			String[] tab=new String[3];
-			tab[0]="192.168.1.93";
-			tab[1]="80";
+			tab[0]=adresseIP;
+			tab[1]=port;
 			tab[2]=ws;
 			reg.addTable(ws, tab);
-			HashMap<String, String[]> m=reg.getEnregistrements();
+			m=reg.getEnregistrements();
 			for(String p:m.get(ws)){
 				System.out.println(p);
 			}

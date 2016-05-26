@@ -27,7 +27,7 @@ public class Registry {
 	
 	public static Object[][] getEnregistrementsToObjects() {
 		Object[][] retour=new Object[getEnregistrements().size()][];
-		//System.out.println(enregistrements.size());
+		System.out.println(enregistrements.size());
 		int i=0;
 		//System.out.println("ok ");
 		for(String key:enregistrements.keySet()){
@@ -65,30 +65,33 @@ public class Registry {
 	}
 
 	
-	public static void main(String[] zero) throws SQLException {
+	public static void main(String[] zero) throws SQLException, InterruptedException {
 		
 		ServerSocket socketserver  ;
 		Socket socketduserveur ;
 				
 		//TestApp();
 		try {
-			Container ct1=new Container();
 			//ct1.main(args);
 			socketserver = new ServerSocket(4485);
+			//Container ct1=new Container(socketserver.getInetAddress().toString(), "4485");
 			System.out.println("Le registre écoute les connexions sur le port "  + socketserver.getLocalPort()+"...");
 
 			socketduserveur = socketserver.accept(); 
 			ObjectOutputStream fluxEcriture = new ObjectOutputStream(socketduserveur.getOutputStream());
-
-			//System.out.println("Un client s'est connecté !");
-			//while(true)
+			//PrintWriter pw=new PrintWriter(socketduserveur.getOutputStream());
+			System.out.println("Un client s'est connecté !");
+			//for (int i=0; i<10; i++)
 			//{
-				//System.out.println(getEnregistrementsToObjects());
+				System.out.println(getEnregistrementsToObjects()[0][2]);
 				fluxEcriture.writeObject(getEnregistrementsToObjects());
+				//pw.println("dsvffbf");
+				Thread.currentThread().sleep(2000);
+				//fluxEcriture.close();
 			//}
 			
-		       // socketserver.close();
-		       // socketduserveur.close();
+		       socketserver.close();
+		       socketduserveur.close();
 
 		}catch (IOException e) {
 			e.printStackTrace();
