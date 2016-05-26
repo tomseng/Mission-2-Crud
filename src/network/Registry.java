@@ -16,56 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Registry {
-	//List<String> listeEnregistrements = new ArrayList<>();
-    private static HashMap<String, String[]> enregistrements;
-    
-    
-	 
-	public static HashMap<String, String[]> getEnregistrements() {
-		return enregistrements;
-	}
-	
-	public static Object[][] getEnregistrementsToObjects() {
-	
-		Object[][] retour=new Object[getEnregistrements().size()][];
-		System.out.println(enregistrements.size());
-		int i=0;
-		//System.out.println("ok ");
-		for(String key:enregistrements.keySet()){
-			Object[] r=new Object[enregistrements.get(key).length];
-			for(int j=0; j<enregistrements.get(key).length; j++){
-				r=enregistrements.get(key);			
-				//System.out.println("ok "+retour[i][j]);
-			}
-			retour[i]=r;
-			i++;
-		}
-		return retour;
-	}
-	public void addTable(String nomTable, String[] Ipport){
-		enregistrements.put(nomTable, Ipport);
-	}
 
-	public Registry() {
-		super();
-		enregistrements=new HashMap<String, String[]>();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Registry(HashMap<String, String[]> enregistrements) {
-		super();
-		this.enregistrements = enregistrements;
-	}
-
-	public void setEnregistrements(HashMap<String, String[]> enregistrements) {
-		this.enregistrements = enregistrements;
-	}
-
-	public String readRecords(){
-				return null; 
-	}
-
-	
 	public static void main(String[] zero) throws SQLException, InterruptedException, ClassNotFoundException {
 		
 		ServerSocket socketServerContainer  ;
