@@ -28,7 +28,7 @@ public class Client implements ActionListener{
 	private static JTable table_1;
 	
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		
 		
 		//Container ct1 = new Container();
@@ -61,7 +61,7 @@ public class Client implements ActionListener{
 		lblWebservice.setBounds(397, 40, 76, 16);
 		jf1.getContentPane().add(lblWebservice);
 		
-		JButton btnCrerUneEntre = new JButton("Créer une entrée");
+		JButton btnCrerUneEntre = new JButton("Crï¿½er une entrï¿½e");
 		btnCrerUneEntre.setBounds(26, 180, 140, 29);
 		jf1.getContentPane().add(btnCrerUneEntre);
 		
@@ -81,9 +81,9 @@ public class Client implements ActionListener{
 	    //Les titres des colonnes
 	    String  title[] = {"Pseudo", "Age", "Taille"};
 		
-		table = new JTable(data,title);
-		table.setBounds(223, 76, 371, 246);
-		jf1.getContentPane().add(table);
+		//table = new JTable(donne,title);
+		//table.setBounds(223, 76, 371, 246);
+		//jf1.getContentPane().add(table);
 		
 		//Registry reg = new Registry();
 		
@@ -97,16 +97,21 @@ public class Client implements ActionListener{
 		     //socket = new Socket(InetAddress.getLocalHost(),4485);	
 		     socket = new Socket("192.168.0.54",4485);
 		     //socket.connect(endpoint);
-		     ObjectInputStream br=new ObjectInputStream(socket.getInputStream());
-		     while(br.read()!=-1)
-		     {
-		    	
-		    	System.out.println("reçue du client     << "+br.read());
+		     //BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		     ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+		     //String str=br.readLine();
+		     //while(br.readLine() != null)
+		     //{
+		    	Object[][] donne = (Object[][]) ois.readObject();
+		    	System.out.println("reÃ§ue du client     << "+donne[0][0]);
 				//System.out.print("a envoyer au client >> ");
 				//chaine_a_transmettre = stdin.readLine();
 				//fluxEcriture.println(chaine_a_transmettre);
+		    	table = new JTable(donne,title);
+				table.setBounds(223, 76, 371, 246);
+				jf1.getContentPane().add(table);
 
-		     }
+		     //}
 	         socket.close();
 
 		}catch (UnknownHostException e) {
