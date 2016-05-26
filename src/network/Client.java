@@ -95,7 +95,7 @@ public class Client implements ActionListener{
 
 		try {
 		     //socket = new Socket(InetAddress.getLocalHost(),4485);	
-		     socket = new Socket("192.168.0.54",4485);
+		     socket = new Socket("192.168.0.85",4490);
 		     //socket.connect(endpoint);
 		     //BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		     ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());

@@ -67,3 +67,5 @@ build/classes/network/Container.class
 *.class
 *.class
 *.class
+
+build/classes/network/Client.class
