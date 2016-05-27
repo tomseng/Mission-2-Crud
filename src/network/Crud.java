@@ -14,9 +14,9 @@ public class Crud {
 
 	private String port;
 	private String ipRegistre;
-	private static String ipServeurBDD = "jdbc:mysql://192.168.0.85/mission2registry";
+	private static String ipServeurBDD = "jdbc:mysql://192.168.0.74/mission2registry";
 	private static String login = "root";
-	private static String password = "";
+	private static String password = "root";
 	private String nomDB;
 	private String nomTable;
 	public static ArrayList<String> getTablesNames() throws SQLException{
