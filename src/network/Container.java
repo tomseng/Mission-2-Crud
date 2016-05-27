@@ -26,7 +26,6 @@ public class Container {
 		return enregistrements;
 	}
 	public static void main(String[] args) throws SQLException, IOException, InterruptedException {
-		//Socket socketduserveur=socketserver.accept() ;
 		Socket socket = new Socket("192.168.0.85",4485);
 		Crud cr1 = new Crud();
 		enregistrements=new HashMap<String, String[]>();

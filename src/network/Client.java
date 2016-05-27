@@ -83,7 +83,7 @@ public class Client implements ActionListener{
 		JButton btnCrerUneEntre = new JButton("Creer une entree");
 		btnCrerUneEntre.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent e)  {
-				//System.out.println("Crï¿½er une entrï¿½e");
+				//System.out.println("Créer une entrée");
 				//System.out.println(txtpnBox.getText().toString());
 				String[] donnees=txtpnBox.getText().toString().split("\n");
 				String table=(String) listeWS.getValueAt(listeWS.getSelectedRow(), 2);
@@ -100,7 +100,7 @@ public class Client implements ActionListener{
 		jf1.getContentPane().add(btnCrerUneEntre);
 		
 		
-		txtpnBox.setText("Saisir les infos");
+		txtpnBox.setText("Box");
 		txtpnBox.setBounds(6, 211, 172, 111);
 		jf1.getContentPane().add(txtpnBox);
 		
@@ -154,31 +154,10 @@ public class Client implements ActionListener{
 		btnUpdate.setBounds(266, 277, 117, 29);
 		jf1.getContentPane().add(btnUpdate);
 		
-		/*DefaultTableModel model;
-		Vector<String> columnNames = new Vector<String>();
-		Vector<Vector<String>> data = new Vector<Vector<String>>();
-		Vector<String> v = new Vector<String>();
-		v.add("Choix 1");
-		v.add("Choix 2");
-		v.add("Choix 3");
-		data.add(v);
-		columnNames.add("entete1");
-		columnNames.add("entete2");
-		columnNames.add("entete3");
-		model = new DefaultTableModel(data,columnNames);
-		//model.setRowCount(0);
-		contentWS.setModel(model);
-		//model.fireTableDataChanged();
-		//contentWS.setBounds(201, 65, 393, 200);
-		//jf1.getContentPane().add(contentWS);
-		JScrollPane scrollPane = new JScrollPane(contentWS);
-		scrollPane.setBounds(217, 67, 316, 166);
-		jf1.getContentPane().add(scrollPane);*/
-		
 		Socket socket;
 
 		try {
-		      socket = new Socket("192.168.0.85",4490);
+		     socket = new Socket("192.168.0.74",4490);
 		      ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 		      Object[][] donne = (Object[][]) ois.readObject();
 		      System.out.println("reÃ§ue du client     << "+donne[0][0]);
@@ -232,11 +211,11 @@ public class Client implements ActionListener{
 					}
 					contentWS.setModel(model);
 					model.fireTableDataChanged();
-					//contentWS.setBounds(201, 65, 393, 200);
-					//jf1.getContentPane().add(contentWS);
-					JScrollPane scrollPane = new JScrollPane(contentWS);
+					contentWS.setBounds(201, 65, 393, 200);
+					jf1.getContentPane().add(contentWS);
+					/*JScrollPane scrollPane = new JScrollPane(contentWS);
 					scrollPane.setBounds(201, 65, 393, 200);
-					jf1.getContentPane().add(scrollPane);
+					jf1.getContentPane().add(scrollPane);*/
 			   	}
 			   });
 			   listeWS.setBounds(6, 65, 172, 93);
@@ -252,11 +231,11 @@ public class Client implements ActionListener{
 				contentWS.setModel(model);
 				model.fireTableDataChanged();
 				contentWS.setBounds(201, 65, 393, 200);
-				//jf1.getContentPane().add(contentWS);
+				jf1.getContentPane().add(contentWS);
 				
-				JLabel lblContenuDuWebservic = new JLabel("Contenu du WebService");
+				/*JLabel lblContenuDuWebservic = new JLabel("Contenu du WebService");
 				lblContenuDuWebservic.setBounds(325, 40, 152, 16);
-				jf1.getContentPane().add(lblContenuDuWebservic);
+				jf1.getContentPane().add(lblContenuDuWebservic);*/
 				
 				JScrollPane scrollPane = new JScrollPane(contentWS);
 				scrollPane.setBounds(217, 67, 316, 166);
