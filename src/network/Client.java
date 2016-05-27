@@ -100,7 +100,7 @@ public class Client implements ActionListener{
 		jf1.getContentPane().add(btnCrerUneEntre);
 		
 		
-		txtpnBox.setText("Box");
+		txtpnBox.setText("Saisir les infos");
 		txtpnBox.setBounds(6, 211, 172, 111);
 		jf1.getContentPane().add(txtpnBox);
 		
