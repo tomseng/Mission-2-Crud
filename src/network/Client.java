@@ -83,7 +83,7 @@ public class Client implements ActionListener{
 		JButton btnCrerUneEntre = new JButton("Creer une entree");
 		btnCrerUneEntre.addActionListener(new ActionListener()  {
 			public void actionPerformed(ActionEvent e)  {
-				//System.out.println("Créer une entrée");
+				//System.out.println("Crï¿½er une entrï¿½e");
 				//System.out.println(txtpnBox.getText().toString());
 				String[] donnees=txtpnBox.getText().toString().split("\n");
 				String table=(String) listeWS.getValueAt(listeWS.getSelectedRow(), 2);
@@ -178,7 +178,7 @@ public class Client implements ActionListener{
 		Socket socket;
 
 		try {
-		     socket = new Socket("192.168.0.74",4490);
+		      socket = new Socket("192.168.0.85",4490);
 		      ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 		      Object[][] donne = (Object[][]) ois.readObject();
 		      System.out.println("reÃ§ue du client     << "+donne[0][0]);
